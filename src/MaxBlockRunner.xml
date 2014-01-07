@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<manifest>
+    <data>
+        <version value="1.0"/>
+        <author value="Obicere"/>
+        <name value="MaxBlock"/>
+        <description value="Return the length of the largest block of repetitive characters in a String"/>
+        <category value="3"/>
+    </data>
+    <skeleton>
+        <return value="int"/>
+        <method value="maxBlock"/>
+        <parameters>
+            <parameter value="String str"/>
+        </parameters>
+    </skeleton>
+</manifest>

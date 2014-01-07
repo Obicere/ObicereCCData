@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<manifest>
+    <data>
+        <version value="1.0"/>
+        <author value="Obicere"/>
+        <name value="WithoutString"/>
+        <description value="Sweep through the array of Strings and remove an instance of the 'remove' parameter.&#xA;withoutString({&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;a&quot;}, &quot;a&quot;) -> {&quot;b&quot;, &quot;c&quot;}"/>
+        <category value="3"/>
+    </data>
+    <skeleton>
+        <return value="String[]"/>
+        <method value="withoutString"/>
+        <parameters>
+            <parameter value="String[] str"/>
+            <parameter value="String remove"/>
+        </parameters>
+    </skeleton>
+</manifest>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<manifest>
+    <data>
+        <version value="1.0"/>
+        <author value="Obicere"/>
+        <name value="RoundSum"/>
+        <description value="Round each number to the nearest number divisible by 10.&#xA;Then, return the sum of all the rounded numbers.&#xA;5 rounds to 10&#xA;14 rounds to 10&#xA;23 rounds to 20."/>
+        <category value="3"/>
+    </data>
+    <skeleton>
+        <return value="int"/>
+        <method value="roundSum"/>
+        <parameters>
+            <parameter value="int[] nums"/>
+        </parameters>
+    </skeleton>
+</manifest>

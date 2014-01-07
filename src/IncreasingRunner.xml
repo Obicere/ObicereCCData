@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<manifest>
+    <data>
+        <version value="1.0"/>
+        <author value="Obicere"/>
+        <name value="Increasing"/>
+        <description value="Return true if the parameters a, b, c increase as you read them from left-to-right, or stay the same.&#xA;{1, 2, 4} -> true&#xA;{1, 2, 2} -> true&#xA;{1, 4, 3} -> false"/>
+        <category value="2"/>
+    </data>
+    <skeleton>
+        <return value="boolean"/>
+        <method value="increasing"/>
+        <parameters>
+            <parameter value="int[] nums"/>
+        </parameters>
+    </skeleton>
+</manifest>

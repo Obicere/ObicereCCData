@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<manifest>
+    <data>
+        <version value="1.0"/>
+        <author value="Obicere"/>
+        <name value="EvenlySpaced"/>
+        <description value="Given 3 ints, return true if the difference between small and medium&#xA;is the same as the difference between medium and large.&#xA;They won't necessarily be in order"/>
+        <category value="3"/>
+    </data>
+    <skeleton>
+        <return value="boolean"/>
+        <method value="spaced"/>
+        <parameters>
+            <parameter value="int a"/>
+            <parameter value="int b"/>
+            <parameter value="int c"/>
+        </parameters>
+    </skeleton>
+</manifest>

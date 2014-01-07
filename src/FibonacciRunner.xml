@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<manifest>
+    <data>
+        <version value="1.0"/>
+        <author value="Obicere"/>
+        <name value="Fibonacci"/>
+        <description value="Return the nth fibonacci number...&#xA;Recursively."/>
+        <category value="4"/>
+    </data>
+    <skeleton>
+        <return value="int"/>
+        <method value="fibonacci"/>
+        <parameters>
+            <parameter value="int n"/>
+        </parameters>
+    </skeleton>
+</manifest>
