@@ -1,26 +1,44 @@
-import java.lang.reflect.Method;
-import java.util.Random;
-
-import org.obicere.cc.executor.Result;
+import org.obicere.cc.executor.Case;
+import org.obicere.cc.tasks.projects.Manifest;
+import org.obicere.cc.tasks.projects.Parameter;
 import org.obicere.cc.tasks.projects.Runner;
 
+@Manifest(  author = "Obicere",
+        description = "Return true if you can reach the goal (without going over) by adding large blocks (worth 5) and small blocks (worth 1).\nYou only have a number of each of these given in the parameters.",
+        difficulty = 3,
+        version = 1.0)
 public class CanReachRunner extends Runner {
 
-	@Override
-	public Result[] getResults(Class<?> clazz) {
-		try {
-			final Method method = clazz.getMethod("canReach", int.class, int.class, int.class);
-			final Random ran = new Random();
-			final Result[] results = new Result[10];
-			for (int i = 0; i < 10; i++) {
-				final int small = ran.nextInt(5) + 5;
-				final int large = ran.nextInt(5);
-				final int goal = (small + large * 5) + 5 + ran.nextInt(6);
-				results[i] = new Result(method.invoke(clazz.newInstance(), small, large, goal), (goal <= small + large * 5) && goal % 5 <= small, small, large, goal);
-			}
-			return results;
-		} catch (Exception e) {
-			return new Result[] {};
-		}
-	}
+    private static final Parameter[] PARAMETERS = new Parameter[]{
+            new Parameter(int.class, "small"),
+            new Parameter(int.class, "large"),
+            new Parameter(int.class, "goal")
+    };
+
+    @Override
+    public Case[] getCases(){
+        final Case[] cases = new Case[10];
+        for(int i = 0; i < cases.length; i++){
+            final int small = random.nextInt(5, 10);
+            final int large = random.nextInt(5);
+            final int goal = (small + large * 5) + random.nextInt(5, 11);
+            cases[i] = new Case((goal <= small + large * 5) && goal % 5 <= small, small, large, goal);
+        }
+        return cases;
+    }
+
+    @Override
+    public Parameter[] getParameters(){
+        return PARAMETERS;
+    }
+
+    @Override
+    public String getMethodName(){
+        return "canReach";
+    }
+
+    @Override
+    public Class<?> getReturnType(){
+        return boolean.class;
+    }
 }

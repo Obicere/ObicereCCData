@@ -1,32 +1,62 @@
-import java.lang.reflect.Method;
-import java.util.Random;
+import java.util.ArrayList;
 
-import org.obicere.cc.executor.Result;
+import org.obicere.cc.executor.Case;
+import org.obicere.cc.tasks.projects.Manifest;
+import org.obicere.cc.tasks.projects.Parameter;
 import org.obicere.cc.tasks.projects.Runner;
 
+@Manifest(author = "Obicere",
+        description = "Given 3 integers, return true if the difference between small and medium\nis the same as the difference between medium and large.\nThey won't necessarily be in order",
+        difficulty = 2,
+        version = 1.0)
 public class FibonacciRunner extends Runner {
 
-	@Override
-	public Result[] getResults(Class<?> classToTest) {
-		try {
-			final Method method = classToTest.getMethod("fibonacci", int.class);
-			final Random ran = new Random();
-			final Result[] results = new Result[10];
-			for (int i = 0; i < 10; i++) {
-				final int num = ran.nextInt(30);
-				results[i] = new Result(method.invoke(classToTest.newInstance(), num), fibonacci(num), num);
-			}
-			return results;
-		} catch (Exception e) {
-			return new Result[] {};
-		}
-	}
+    private static final Parameter[] PARAMETERS = new Parameter[]{
+            new Parameter(int.class, "n")
+    };
 
-	public int fibonacci(int n) {
-		if (n == 1 || n == 0) {
-			return n;
-		}
-		return fibonacci(n - 1) + fibonacci(n - 2);
+    private static final ArrayList<Integer> FIBONACCI = new ArrayList<>();
 
-	}
+    static {
+        FIBONACCI.add(0);
+        FIBONACCI.add(1);
+        FIBONACCI.add(1);
+    }
+
+    @Override
+    public Case[] getCases(){
+        final Case[] cases = new Case[10];
+        for(int i = 0; i < cases.length; i++){
+            final int n = random.nextInt(46); // 1,836,311,903
+            cases[i] = new Case(fibonacci(n), n);
+        }
+        return cases;
+    }
+
+    @Override
+    public Parameter[] getParameters(){
+        return PARAMETERS;
+    }
+
+    @Override
+    public String getMethodName(){
+        return "fibonacci";
+    }
+
+    @Override
+    public Class<?> getReturnType(){
+        return int.class;
+    }
+
+    public static int fibonacci(final int i) {
+        if(i < 0){
+            return 0;
+        }
+        if (i < FIBONACCI.size()) {
+            return FIBONACCI.get(i);
+        }
+        final int num = fibonacci(i - 2) + fibonacci(i - 1);
+        FIBONACCI.add(num);
+        return num;
+    }
 }

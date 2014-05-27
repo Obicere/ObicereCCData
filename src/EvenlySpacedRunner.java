@@ -1,46 +1,55 @@
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Random;
-
-import org.obicere.cc.executor.Result;
+import org.obicere.cc.executor.Case;
+import org.obicere.cc.tasks.projects.Manifest;
+import org.obicere.cc.tasks.projects.Parameter;
 import org.obicere.cc.tasks.projects.Runner;
 
+@Manifest(  author = "Obicere",
+        description = "Given 3 integers, return true if the difference between small and medium\nis the same as the difference between medium and large.\nThey won't necessarily be in order",
+        difficulty = 2,
+        version = 1.0)
 public class EvenlySpacedRunner extends Runner {
 
-	@Override
-	public Result[] getResults(Class<?> classToTest) {
-		try {
-			final Method method = classToTest.getMethod("spaced", int.class, int.class, int.class);
-			final Random ran = new Random();
-			final Result[] results = new Result[10];
-			for (int i = 0; i < 10; i++) {
-				final int a = ran.nextInt(10), b = a + (-ran.nextInt(2) + ran.nextInt(4)), c = b + (-ran.nextInt(2) + ran.nextInt(4));
-				results[i] = new Result(method.invoke(classToTest.newInstance(), a, b, c), spaced(a, b, c), Arrays.toString(new int[] { a, b, c }));
-			}
-			return results;
-		} catch (Exception e) {
-			return new Result[] {};
+    private static final Parameter[] PARAMETERS = new Parameter[]{
+            new Parameter(int.class, "a"),
+            new Parameter(int.class, "b"),
+            new Parameter(int.class, "c")
+    };
 
-		}
-	}
+    @Override
+    public Case[] getCases(){
+        final Case[] cases = new Case[10];
+        for(int i = 0; i < cases.length; i++){
+            final int a = random.nextInt(100);
+            final int delta = random.nextInt(-50, 50);
+            final int b = a + delta + random.nextInt(3);
+            final int c = b + delta + random.nextInt(3);
 
-	private boolean spaced(int a, int b, int c) {
-		int diff1 = 0;
-		int diff2 = 0;
-		int diff3 = 0;
+            cases[i] = new Case(spaced(a, b, c), a, b, c);
+        }
+        return cases;
+    }
 
-		if (a == b && a == c) {
-			return true;
-		}
+    @Override
+    public Parameter[] getParameters(){
+        return PARAMETERS;
+    }
 
-		if (a == b || b == c || a == c) {
-			return false;
-		}
-		diff1 = Math.abs(a - b);
-		diff2 = Math.abs(a - c);
-		diff3 = Math.abs(b - c);
+    @Override
+    public String getMethodName(){
+        return "evenlySpaced";
+    }
+
+    @Override
+    public Class<?> getReturnType(){
+        return boolean.class;
+    }
+
+	private boolean spaced(final int a, final int b, final int c) {
+
+		final int diff1 = Math.abs(a - b);
+		final int diff2 = Math.abs(a - c);
+		final int diff3 = Math.abs(b - c);
 
         return diff1 == diff2 || diff1 == diff3 || diff2 == diff3;
-
     }
 }

@@ -3,8 +3,6 @@ import org.obicere.cc.tasks.projects.Manifest;
 import org.obicere.cc.tasks.projects.Parameter;
 import org.obicere.cc.tasks.projects.Runner;
 
-import java.util.Random;
-
 @Manifest(author = "Obicere",
         version = 1.0,
         description = "Given an array of integers of length 10, sum all the integers.\n" +
@@ -30,12 +28,11 @@ public class AddMinusRunner extends Runner {
 
     @Override
     public Case[] getCases() {
-        final Random random = new Random();
         final Case[] cases = new Case[10];
         for (int i = 0; i < cases.length; i++) {
             final int[] numbers = new int[random.nextInt(10)];
             for (int j = 0; j < numbers.length; j++) {
-                numbers[j] = random.nextInt(2000) - 1000;
+                numbers[j] = random.nextInt(-1000, 1000);
             }
             cases[i] = new Case(addMinus(numbers), numbers);
         }

@@ -1,27 +1,42 @@
-import java.lang.reflect.Method;
-import java.util.Random;
-
-import org.obicere.cc.executor.Result;
+import org.obicere.cc.executor.Case;
+import org.obicere.cc.tasks.projects.Manifest;
+import org.obicere.cc.tasks.projects.Parameter;
 import org.obicere.cc.tasks.projects.Runner;
 
+@Manifest(  author = "Obicere",
+        description = "Given parameters boolean lowGas and boolean lowOil, using the getWarning method return the following:\n0 if you have no issues\n1 if you have lowOil\n2 if you have lowGas\n3 if you have both.",
+        difficulty = 1,
+        version = 1.0)
 public class CarTroubleRunner extends Runner {
 
-	@Override
-	public Result[] getResults(Class<?> classToTest) {
-		try {
-			final Random random = new Random();
-			final Object instance = classToTest.newInstance();
-			final Method method = classToTest.getMethod("getWarning", boolean.class, boolean.class);
-            final Result[] results = new Result[random.nextInt(10)];
-            for(int i = 0; i < results.length; i++){
-                final boolean a = random.nextBoolean();
-                final boolean b = random.nextBoolean();
-                results[i] = new Result(method.invoke(instance, a, b), (a ? 1 : 0) + (b ? 2 : 0), a +", " + b);
-            }
-			return results;
-		} catch (Exception e) {
-			return new Result[] {};
-		}
+    private static final Parameter[] PARAMETERS = new Parameter[]{
+            new Parameter(boolean.class, "lowGas"),
+            new Parameter(boolean.class, "lowOil")
+    };
 
-	}
+    @Override
+    public Case[] getCases(){
+        final Case[] cases = new Case[10];
+        for(int i = 0; i < cases.length; i++){
+            final boolean lowGas = random.nextBoolean();
+            final boolean lowOil = random.nextBoolean();
+            cases[i] = new Case((lowOil ? 1 : 0) + (lowGas ? 2 : 0), lowGas, lowOil);
+        }
+        return cases;
+    }
+
+    @Override
+    public Parameter[] getParameters(){
+        return PARAMETERS;
+    }
+
+    @Override
+    public String getMethodName(){
+        return "getWarning";
+    }
+
+    @Override
+    public Class<?> getReturnType(){
+        return int.class;
+    }
 }

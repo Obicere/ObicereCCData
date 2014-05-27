@@ -1,5 +1,3 @@
-import java.util.Random;
-
 import org.obicere.cc.executor.Case;
 import org.obicere.cc.tasks.projects.Manifest;
 import org.obicere.cc.tasks.projects.Parameter;
@@ -18,7 +16,6 @@ public class AddDoubleOddRunner extends Runner {
 
     @Override
     public Case[] getCases() {
-        final Random random = new Random();
         final Case[] cases = new Case[10];
         for(int i = 0; i < cases.length; i++){
             final int x = -3000 + random.nextInt(6000);
