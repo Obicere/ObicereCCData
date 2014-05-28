@@ -1,37 +1,51 @@
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
 
-import org.obicere.cc.executor.Result;
+import org.obicere.cc.executor.Case;
+import org.obicere.cc.methods.CharSet;
+import org.obicere.cc.tasks.projects.Manifest;
+import org.obicere.cc.tasks.projects.Parameter;
 import org.obicere.cc.tasks.projects.Runner;
 
+@Manifest(author = "Obicere",
+        description = "Sweep through the array of Strings and remove an instance of the 'remove' parameter.\nwithoutString({\"a\", \"b\", \"c\", \"a\"}, \"a\") -> {\"b\", \"c\"}",
+        difficulty = 2,
+        version = 1.0)
 public class WithoutStringRunner extends Runner {
 
-    private static final char[] CHARS = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
-            'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
-            'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
-            'J', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
-            'V', 'W', 'X', 'Y', 'Z'};
+    private static final Parameter[] PARAMETERS = new Parameter[]{
+            new Parameter(String[].class, "strings"),
+            new Parameter(String.class, "remove")
+    };
 
     @Override
-    public Result[] getResults(Class<?> clazz) {
-        try {
-            final Method method = clazz.getMethod("withoutString", String[].class, String.class);
-            final Random random = new Random();
-            final Result[] results = new Result[10];
-            for (int i = 0; i < results.length; i++) {
-                final String[] ans = new String[3 + random.nextInt(5)];
-                for (int j = 0; j < ans.length; j++) {
-                    ans[j] = String.valueOf(CHARS[random.nextInt(CHARS.length)]);
-                }
-                final String remove = ans[random.nextInt(ans.length)];
-                results[i] = new Result(Arrays.toString((String[]) method.invoke(clazz.newInstance(), ans, remove)), Arrays.toString(replace(ans, remove)), Arrays.toString(ans), remove);
+    public Case[] getCases(){
+        final Case[] cases = new Case[10];
+        for(int i = 0; i < cases.length; i++){
+            final int length = random.nextInt(10);
+            final String[] strings = new String[length];
+            for(int j = 0; j < length; j++){
+                strings[j] = String.valueOf(random.nextChar(CharSet.ALPHA));
             }
-            return results;
-        } catch (Exception e) {
-            return new Result[]{};
+            final String remove = strings[random.nextInt(length)];
+            final String[] answer = replace(strings, remove);
+            cases[i] = new Case(answer, strings, remove);
         }
+        return cases;
+    }
+
+    @Override
+    public Parameter[] getParameters(){
+        return PARAMETERS;
+    }
+
+    @Override
+    public String getMethodName(){
+        return "withoutString";
+    }
+
+    @Override
+    public Class<?> getReturnType(){
+        return String[].class;
     }
 
     private String[] replace(final String[] str, final String replace) {

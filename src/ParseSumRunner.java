@@ -1,9 +1,13 @@
-import java.lang.reflect.Method;
-import java.util.Random;
-
-import org.obicere.cc.executor.Result;
+import org.obicere.cc.executor.Case;
+import org.obicere.cc.methods.CharSet;
+import org.obicere.cc.tasks.projects.Manifest;
+import org.obicere.cc.tasks.projects.Parameter;
 import org.obicere.cc.tasks.projects.Runner;
 
+@Manifest(author = "Obicere",
+        description = "Return the sum of all the numbers contained in the string.\n\"Aj7b7s6\" -> 7 + 7 + 6 = 20",
+        difficulty = 2,
+        version = 1.0)
 public class ParseSumRunner extends Runner {
 
 	private static final char[] CHARS = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
@@ -12,43 +16,41 @@ public class ParseSumRunner extends Runner {
 			'J', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
 			'V', 'W', 'X', 'Y', 'Z' };
 
-	@Override
-	public Result[] getResults(Class<?> clazz) {
-		try {
-			final Method method = clazz.getMethod("getSum", String.class);
-			final Random ran = new Random();
-			final Result[] results = new Result[10];
-			for (int i = 0; i < results.length; i++) {
-				String str = "";
-				for (int j = 0; j < 10; j++) {
-					switch (ran.nextInt(3)) {
-					case 0:
-						str += "" + CHARS[ran.nextInt(CHARS.length)];
-						break;
-					case 1:
-						str += "" + ran.nextInt(10);
-						break;
-					case 2:
-						break;
-					}
-				}
-				results[i] = new Result(
-						method.invoke(clazz.newInstance(), str),
-						sumDigits(str), str);
-			}
-			return results;
-		} catch (Exception e) {
-			return new Result[]{};
-		}
-	}
+    private static final Parameter[] PARAMETERS = new Parameter[]{
+            new Parameter(String.class, "str")
+    };
 
-	private int sumDigits(String str) {
-		int sum = 0;
-		for (int i = 0; i < str.length(); i++) {
-			if (Character.isDigit(str.charAt(i))) {
-				sum += Integer.parseInt("" + str.charAt(i));
-			}
-		}
-		return sum;
-	}
+    @Override
+    public Case[] getCases(){
+        final Case[] cases = new Case[10];
+        for(int i = 0; i < cases.length; i++){
+            final int length = random.nextInt(5, 15);
+            final StringBuilder str = new StringBuilder(length);
+            int sum = 0;
+            for(int j = 0; j < length; j++){
+                final char next = random.nextChar(CharSet.ALPHANUMERIC);
+                if(Character.isDigit(next)){
+                    sum += next - '0';
+                }
+                str.append(next);
+            }
+            cases[i] = new Case(sum, str.toString());
+        }
+        return cases;
+    }
+
+    @Override
+    public Parameter[] getParameters(){
+        return PARAMETERS;
+    }
+
+    @Override
+    public String getMethodName(){
+        return "getSum";
+    }
+
+    @Override
+    public Class<?> getReturnType(){
+        return int.class;
+    }
 }

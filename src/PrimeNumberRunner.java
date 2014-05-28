@@ -1,27 +1,45 @@
-import java.lang.reflect.Method;
-import java.util.Random;
-
-import org.obicere.cc.executor.Result;
+import org.obicere.cc.executor.Case;
+import org.obicere.cc.tasks.projects.Manifest;
+import org.obicere.cc.tasks.projects.Parameter;
 import org.obicere.cc.tasks.projects.Runner;
 
+@Manifest(author = "Obicere",
+        description = "Return the nth prime number in method 'getNthPrime(int n)'.\nn will be bounded by [1, 1000]\nAssume 2 is the first prime number.",
+        difficulty = 3,
+        version = 1.0)
 public class PrimeNumberRunner extends Runner {
 
-	@Override
-	public Result[] getResults(Class<?> classToTest) {
-		final Random random = new Random();
-		final int[] primes = getPrimes();
-		try {
-			final Method method = classToTest.getMethod("getNthPrime", int.class);
-			final Result[] results = new Result[10];
-			for (int i = 0; i < 10; i++) {
-				int param = random.nextInt(1000);
-				results[i] = new Result(method.invoke(classToTest.newInstance(), param + 1), primes[param], param + 1);
-			}
-			return results;
-		} catch (Exception e) {
-			return new Result[]{};
-		}
-	}
+    private static final int[] PRIMES = getPrimes();
+
+    private static final Parameter[] PARAMETERS = new Parameter[]{
+            new Parameter(int.class, "n")
+    };
+
+    @Override
+    public Case[] getCases(){
+        final Case[] cases = new Case[10];
+        for(int i = 0; i < cases.length; i++){
+            final int n = random.nextInt(1000);
+            final int value = PRIMES[n];
+            cases[i] = new Case(value, n + 1); // Offset
+        }
+        return cases;
+    }
+
+    @Override
+    public Parameter[] getParameters(){
+        return PARAMETERS;
+    }
+
+    @Override
+    public String getMethodName(){
+        return "getNthPrime";
+    }
+
+    @Override
+    public Class<?> getReturnType(){
+        return int.class;
+    }
 
 	private static int[] getPrimes() {
 		final int[] primes = new int[1000];
