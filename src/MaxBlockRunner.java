@@ -1,42 +1,53 @@
-import java.lang.reflect.Method;
-import java.util.Random;
-
-import org.obicere.cc.executor.Result;
+import org.obicere.cc.executor.Case;
+import org.obicere.cc.methods.CharSet;
+import org.obicere.cc.tasks.projects.Manifest;
+import org.obicere.cc.tasks.projects.Parameter;
 import org.obicere.cc.tasks.projects.Runner;
 
+@Manifest(author = "Obicere",
+        description = "Return the length of the largest block of repetitive characters in a String.",
+        difficulty = 3,
+        version = 1.0)
 public class MaxBlockRunner extends Runner {
 
-	private static final char[] CHARS = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
-			'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
-			'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
-			'J', 'I', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
-			'V', 'W', 'X', 'Y', 'Z' };
+    private static final Parameter[] PARAMETERS = new Parameter[]{
+            new Parameter(String.class, "str")
+    };
 
-	@Override
-	public Result[] getResults(Class<?> clazz) {
-		try {
-			Method method = clazz.getMethod("maxBlock", String.class);
-			Result[] results = new Result[10];
-			Random random = new Random();
-			for (int i = 0; i < 10; i++) {
-				String string = "";
-				for (int j = 0; j < 4 + random.nextInt(3); j++) {
-					char c = CHARS[random.nextInt(CHARS.length)];
-					for(int k = 0; k < random.nextInt(5); k++){
-						string += c;
-					}
-				}
-				results[i] = new Result(method.invoke(clazz.newInstance(), string), maxBlock(string), string);
+    @Override
+    public Case[] getCases() {
+        final Case[] cases = new Case[10];
+        for (int i = 0; i < cases.length; i++) {
+            final StringBuilder builder = new StringBuilder();
+            int max = 0;
+            for (int j = 0; j < random.nextInt(3, 7); j++) {
+                final char c = random.nextChar(CharSet.ALPHA);
+                final int length = random.nextInt(5);
+                for(int k = 0; k < length; k++){
+                    builder.append(c);
+                }
+                if(length > max){
+                    max = length;
+                }
+            }
+            cases[i] = new Case(max, builder.toString());
+        }
+        return cases;
+    }
 
-			}
-			return results;
-		} catch (Exception e) {
-            return new Result[]{};
-		}
-	}
+    @Override
+    public Parameter[] getParameters(){
+        return PARAMETERS;
+    }
 
-	private int maxBlock(String str) {
-		int i;
-		return str.isEmpty() ? 0 : Math.max(i = str.replaceAll("(.)(\\1*).*", "$1$2").length(), maxBlock(str.substring(i)));
-	}
+    @Override
+    public String getMethodName(){
+        return "maxBlock";
+    }
+
+    @Override
+    public Class<?> getReturnType(){
+        return int.class;
+    }
+
 }

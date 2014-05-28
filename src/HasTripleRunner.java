@@ -2,41 +2,64 @@ import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Random;
 
+import org.obicere.cc.executor.Case;
 import org.obicere.cc.executor.Result;
+import org.obicere.cc.tasks.projects.Manifest;
+import org.obicere.cc.tasks.projects.Parameter;
 import org.obicere.cc.tasks.projects.Runner;
 
+@Manifest(author = "Obicere",
+        description = "Return true if the array has three of the same element in a row.\n{1, 4, 5, 5, 5, 8} -> true\n{1, 4, 5, 6, 5, 5, 8} -> false",
+        difficulty = 2,
+        version = 1.0)
 public class HasTripleRunner extends Runner {
 
-	@Override
-	public Result[] getResults(Class<?> clazz) {
-		try {
-			final Method method = clazz.getMethod("hasTriple", int[].class);
-			final Result[] results = new Result[10];
-			final Random random = new Random();
-			for (int i = 0; i < results.length; i++) {
-				final int[] nums = new int[7];
-				for (int k = 0; k < 7;) {
-					final int val = random.nextInt(10);
-					final int max = random.nextInt(3);
-					for (int j = 0; j < max && k < 7; j++) {
-						nums[k] = val;
-						k++;
-					}
-				}
-				results[i] = new Result(method.invoke(clazz.newInstance(), nums), hasTriple(nums), Arrays.toString(nums));
-			}
-			return results;
-		} catch (Exception e) {
-			return new Result[]{};
-		}
-	}
+    private static final Parameter[] PARAMETERS = new Parameter[]{
+            new Parameter(int[].class, "nums")
+    };
 
-	private boolean hasTriple(int[] nums) {
-		for (int i = 0; i < nums.length - 2; i++) {
-			if (nums[i + 1] == nums[i] && nums[i + 2] == nums[i])
-				return true;
-		}
-		return false;
-	}
+    @Override
+    public Case[] getCases() {
+        final Case[] cases = new Case[10];
+        for(int i = 0; i < cases.length; i++){
+            final int length = random.nextInt(5, 15);
+            final int[] nums = new int[length];
+            for (int k = 0; k < length;) {
+
+                final int val = random.nextInt(100);
+                final int max = random.nextInt(3);
+
+                for (int j = 0; j < max && k < length; j++) {
+                    nums[k] = val;
+                    k++;
+                }
+            }
+            cases[i] = new Case(hasTriple(nums), nums);
+        }
+        return cases;
+    }
+
+    @Override
+    public Parameter[] getParameters() {
+        return PARAMETERS;
+    }
+
+    @Override
+    public String getMethodName() {
+        return "hasTriple";
+    }
+
+    @Override
+    public Class<?> getReturnType() {
+        return boolean.class;
+    }
+
+    private boolean hasTriple(int[] nums) {
+        for (int i = 0; i < nums.length - 2; i++) {
+            if (nums[i + 1] == nums[i] && nums[i + 2] == nums[i])
+                return true;
+        }
+        return false;
+    }
 
 }

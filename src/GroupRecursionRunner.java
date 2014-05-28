@@ -1,33 +1,48 @@
-import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.Random;
-
-import org.obicere.cc.executor.Result;
+import org.obicere.cc.executor.Case;
+import org.obicere.cc.tasks.projects.Manifest;
+import org.obicere.cc.tasks.projects.Parameter;
 import org.obicere.cc.tasks.projects.Runner;
 
+@Manifest(author = "Obicere",
+        description = "Return true if any combination of the numbers can reach the target.\nStart will always be 0 to begin with.\nRemember that this is recursive, so no loops.",
+        difficulty = 4,
+        version = 1.0)
 public class GroupRecursionRunner extends Runner {
 
-	@Override
-	public Result[] getResults(Class<?> clazz) {
-		try {
-			final Method method = clazz.getMethod("group", int.class, int.class,
-					int[].class);
-			final Random random = new Random();
-			final Result[] results = new Result[10];
-			for (int i = 0; i < 10; i++) {
-				final int[] nums = new int[3 + random.nextInt(4)];
-				for (int j = 0; j < nums.length; j++) {
-					nums[j] = random.nextInt(13);
-				}
-				final int target = 3 + random.nextInt(22);
-				results[i] = new Result(method.invoke(clazz.newInstance(), 0, target, nums), groupSum(0, target, nums), "0, " + target + ", " + Arrays.toString(nums));
+    private static final Parameter[] PARAMETERS = new Parameter[]{
+            new Parameter(int.class, "start"),
+            new Parameter(int.class, "target"),
+            new Parameter(int[].class, "nums")
+    };
 
-			}
-			return results;
-		} catch (Exception e) {
-			return new Result[]{};
-		}
-	}
+    @Override
+    public Case[] getCases(){
+        final Case[] cases = new Case[10];
+        for(int i = 0; i < 10; i++){
+            final int[] nums = new int[random.nextInt(3, 7)];
+            for(int j = 0; j < nums.length; j++){
+                nums[j] = random.nextInt(-12, 13);
+            }
+            final int target = random.nextInt(-23, 22);
+            cases[i] = new Case(groupSum(0, target, nums), 0, target, nums);
+        }
+        return cases;
+    }
+
+    @Override
+    public Parameter[] getParameters(){
+        return PARAMETERS;
+    }
+
+    @Override
+    public String getMethodName(){
+        return "group";
+    }
+
+    @Override
+    public Class<?> getReturnType(){
+        return boolean.class;
+    }
 
 	private boolean groupSum(int start, int target, int[] nums) {
 		if (start == nums.length)
