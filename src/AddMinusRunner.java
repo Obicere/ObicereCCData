@@ -4,10 +4,10 @@ import org.obicere.cc.tasks.projects.Parameter;
 import org.obicere.cc.tasks.projects.Runner;
 
 @Manifest(author = "Obicere",
-        version = 1.0,
-        description = "Given an array of integers of length 10, sum all the integers.\n" +
-                "But, if the number is even, subtract it from the sum. ",
-        difficulty = 1)
+          version = 1.0,
+          description = "Given an array of integers of length 10, sum all the integers.\n" +
+                        "But, if the number is even, subtract it from the sum. ",
+          difficulty = 1)
 public class AddMinusRunner extends Runner {
 
     private static final Parameter[] PARAMETERS = new Parameter[]{

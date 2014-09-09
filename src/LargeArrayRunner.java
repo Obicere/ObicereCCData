@@ -4,9 +4,9 @@ import org.obicere.cc.tasks.projects.Parameter;
 import org.obicere.cc.tasks.projects.Runner;
 
 @Manifest(author = "Obicere",
-        description = "Return the array that has a larger sum out of the 2.\n{1, 3, 2}, {5, 3, 2} -> {5, 3, 2}\n{1, 5, 6}, {4, 8, 0} -> {1, 5, 6}\nThey will always be of same length.\nIf they are of same size, return array 'b'",
-        difficulty = 1,
-        version = 1.0)
+          description = "Return the array that has a larger sum out of the 2.\n{1, 3, 2}, {5, 3, 2} -> {5, 3, 2}\n{1, 5, 6}, {4, 8, 0} -> {1, 5, 6}\nThey will always be of same length.\nIf they are of same size, return array 'b'",
+          difficulty = 1,
+          version = 1.0)
 public class LargeArrayRunner extends Runner {
 
     private static final Parameter[] PARAMETERS = new Parameter[]{
@@ -37,17 +37,17 @@ public class LargeArrayRunner extends Runner {
     }
 
     @Override
-    public Parameter[] getParameters(){
+    public Parameter[] getParameters() {
         return PARAMETERS;
     }
 
     @Override
-    public String getMethodName(){
+    public String getMethodName() {
         return "largerArray";
     }
 
     @Override
-    public Class<?> getReturnType(){
+    public Class<?> getReturnType() {
         return int[].class;
     }
 }

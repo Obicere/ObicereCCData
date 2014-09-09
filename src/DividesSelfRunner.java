@@ -9,6 +9,8 @@ import org.obicere.cc.tasks.projects.Runner;
         version = 1.0)
 public class DividesSelfRunner extends Runner {
 
+    //TODO: define an algorithm to find the nth divides_self number
+
     private static final int[] DIVIDES_SELF_TRUE = new int[]{
             111,	112,	115,	122,	124,	126,	128,	132,	135,	144,
             155,	162,	168,	175,	184,	212,	216,	222,	224,	244,
@@ -80,14 +82,16 @@ public class DividesSelfRunner extends Runner {
 
 	private boolean canDivide(int num) {
         int count = (int) Math.log10(num) + 1;
-        for(int i = 0; i < count; i++){
-            int next = ((int) (num / Math.pow(10, i))) % 10;
-            if(next == 0){
+        int radix = 1;
+        for(int i = 0; i < count; i++) {
+            int next = (num / radix) % 10;
+            if (next == 0) {
                 return false;
             }
-            if(num % next != 0){
+            if (num % next != 0) {
                 return false;
             }
+            radix *= 10;
         }
         return true;
 	}

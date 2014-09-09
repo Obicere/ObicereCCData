@@ -3,10 +3,10 @@ import org.obicere.cc.tasks.projects.Manifest;
 import org.obicere.cc.tasks.projects.Parameter;
 import org.obicere.cc.tasks.projects.Runner;
 
-@Manifest(  author = "Obicere",
-        description = "Given 3 integers, return true if the difference between small and medium\nis the same as the difference between medium and large.\nThey won't necessarily be in order",
-        difficulty = 2,
-        version = 1.0)
+@Manifest(author = "Obicere",
+          description = "Given 3 integers, return true if the difference between small and medium\nis the same as the difference between medium and large.\nThey won't necessarily be in order",
+          difficulty = 2,
+          version = 1.0)
 public class EvenlySpacedRunner extends Runner {
 
     private static final Parameter[] PARAMETERS = new Parameter[]{
@@ -16,9 +16,9 @@ public class EvenlySpacedRunner extends Runner {
     };
 
     @Override
-    public Case[] getCases(){
+    public Case[] getCases() {
         final Case[] cases = new Case[10];
-        for(int i = 0; i < cases.length; i++){
+        for (int i = 0; i < cases.length; i++) {
             final int a = random.nextInt(100);
             final int delta = random.nextInt(-50, 50);
             final int b = a + delta + random.nextInt(3);
@@ -30,25 +30,25 @@ public class EvenlySpacedRunner extends Runner {
     }
 
     @Override
-    public Parameter[] getParameters(){
+    public Parameter[] getParameters() {
         return PARAMETERS;
     }
 
     @Override
-    public String getMethodName(){
+    public String getMethodName() {
         return "evenlySpaced";
     }
 
     @Override
-    public Class<?> getReturnType(){
+    public Class<?> getReturnType() {
         return boolean.class;
     }
 
-	private boolean spaced(final int a, final int b, final int c) {
+    private boolean spaced(final int a, final int b, final int c) {
 
-		final int diff1 = Math.abs(a - b);
-		final int diff2 = Math.abs(a - c);
-		final int diff3 = Math.abs(b - c);
+        final int diff1 = Math.abs(a - b);
+        final int diff2 = Math.abs(a - c);
+        final int diff3 = Math.abs(b - c);
 
         return diff1 == diff2 || diff1 == diff3 || diff2 == diff3;
     }

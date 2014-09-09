@@ -3,10 +3,10 @@ import org.obicere.cc.tasks.projects.Manifest;
 import org.obicere.cc.tasks.projects.Parameter;
 import org.obicere.cc.tasks.projects.Runner;
 
-@Manifest(  author = "Obicere",
-        description = "Return true if you can reach the goal (without going over) by adding large blocks (worth 5) and small blocks (worth 1).\nYou only have a number of each of these given in the parameters.",
-        difficulty = 3,
-        version = 1.0)
+@Manifest(author = "Obicere",
+          description = "Return true if you can reach the goal (without going over) by adding large blocks (worth 5) and small blocks (worth 1).\nYou only have a number of each of these given in the parameters.",
+          difficulty = 3,
+          version = 1.0)
 public class CanReachRunner extends Runner {
 
     private static final Parameter[] PARAMETERS = new Parameter[]{
@@ -16,9 +16,9 @@ public class CanReachRunner extends Runner {
     };
 
     @Override
-    public Case[] getCases(){
+    public Case[] getCases() {
         final Case[] cases = new Case[10];
-        for(int i = 0; i < cases.length; i++){
+        for (int i = 0; i < cases.length; i++) {
             final int small = random.nextInt(5, 10);
             final int large = random.nextInt(5);
             final int goal = (small + large * 5) + random.nextInt(5, 11);
@@ -28,17 +28,17 @@ public class CanReachRunner extends Runner {
     }
 
     @Override
-    public Parameter[] getParameters(){
+    public Parameter[] getParameters() {
         return PARAMETERS;
     }
 
     @Override
-    public String getMethodName(){
+    public String getMethodName() {
         return "canReach";
     }
 
     @Override
-    public Class<?> getReturnType(){
+    public Class<?> getReturnType() {
         return boolean.class;
     }
 }

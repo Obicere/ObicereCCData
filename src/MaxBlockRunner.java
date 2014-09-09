@@ -5,9 +5,9 @@ import org.obicere.cc.tasks.projects.Parameter;
 import org.obicere.cc.tasks.projects.Runner;
 
 @Manifest(author = "Obicere",
-        description = "Return the length of the largest block of repetitive characters in a String.",
-        difficulty = 3,
-        version = 1.0)
+          description = "Return the length of the largest block of repetitive characters in a String.",
+          difficulty = 3,
+          version = 1.0)
 public class MaxBlockRunner extends Runner {
 
     private static final Parameter[] PARAMETERS = new Parameter[]{
@@ -23,10 +23,10 @@ public class MaxBlockRunner extends Runner {
             for (int j = 0; j < random.nextInt(3, 7); j++) {
                 final char c = random.nextChar(CharSet.ALPHA);
                 final int length = random.nextInt(5);
-                for(int k = 0; k < length; k++){
+                for (int k = 0; k < length; k++) {
                     builder.append(c);
                 }
-                if(length > max){
+                if (length > max) {
                     max = length;
                 }
             }
@@ -36,17 +36,17 @@ public class MaxBlockRunner extends Runner {
     }
 
     @Override
-    public Parameter[] getParameters(){
+    public Parameter[] getParameters() {
         return PARAMETERS;
     }
 
     @Override
-    public String getMethodName(){
+    public String getMethodName() {
         return "maxBlock";
     }
 
     @Override
-    public Class<?> getReturnType(){
+    public Class<?> getReturnType() {
         return int.class;
     }
 

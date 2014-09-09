@@ -3,10 +3,10 @@ import org.obicere.cc.tasks.projects.Manifest;
 import org.obicere.cc.tasks.projects.Parameter;
 import org.obicere.cc.tasks.projects.Runner;
 
-@Manifest(  author = "Obicere",
-            description = "Add parameters x and y, but if x is odd, return double the sum.",
-            difficulty = 1,
-            version = 1.0)
+@Manifest(author = "Obicere",
+          description = "Add parameters x and y, but if x is odd, return double the sum.",
+          difficulty = 1,
+          version = 1.0)
 public class AddDoubleOddRunner extends Runner {
 
     private static final Parameter[] PARAMETERS = new Parameter[]{
@@ -17,7 +17,7 @@ public class AddDoubleOddRunner extends Runner {
     @Override
     public Case[] getCases() {
         final Case[] cases = new Case[10];
-        for(int i = 0; i < cases.length; i++){
+        for (int i = 0; i < cases.length; i++) {
             final int x = -3000 + random.nextInt(6000);
             final int y = -3000 + random.nextInt(6000);
             final int correct = (x + y) * (x % 2 == 0 ? 1 : 2);

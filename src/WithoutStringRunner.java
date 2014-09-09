@@ -1,15 +1,15 @@
-import java.util.ArrayList;
-
 import org.obicere.cc.executor.Case;
 import org.obicere.cc.methods.CharSet;
 import org.obicere.cc.tasks.projects.Manifest;
 import org.obicere.cc.tasks.projects.Parameter;
 import org.obicere.cc.tasks.projects.Runner;
 
+import java.util.ArrayList;
+
 @Manifest(author = "Obicere",
-        description = "Sweep through the array of Strings and remove an instance of the 'remove' parameter.\nwithoutString({\"a\", \"b\", \"c\", \"a\"}, \"a\") -> {\"b\", \"c\"}",
-        difficulty = 2,
-        version = 1.0)
+          description = "Sweep through the array of Strings and remove an instance of the 'remove' parameter.\nNo null strings will be provided. \nwithoutString({\"a\", \"b\", \"c\", \"a\"}, \"a\") -> {\"b\", \"c\"}",
+          difficulty = 2,
+          version = 1.0)
 public class WithoutStringRunner extends Runner {
 
     private static final Parameter[] PARAMETERS = new Parameter[]{
@@ -18,12 +18,12 @@ public class WithoutStringRunner extends Runner {
     };
 
     @Override
-    public Case[] getCases(){
+    public Case[] getCases() {
         final Case[] cases = new Case[10];
-        for(int i = 0; i < cases.length; i++){
+        for (int i = 0; i < cases.length; i++) {
             final int length = random.nextInt(10);
             final String[] strings = new String[length];
-            for(int j = 0; j < length; j++){
+            for (int j = 0; j < length; j++) {
                 strings[j] = String.valueOf(random.nextChar(CharSet.ALPHA));
             }
             final String remove = strings[random.nextInt(length)];
@@ -34,23 +34,23 @@ public class WithoutStringRunner extends Runner {
     }
 
     @Override
-    public Parameter[] getParameters(){
+    public Parameter[] getParameters() {
         return PARAMETERS;
     }
 
     @Override
-    public String getMethodName(){
+    public String getMethodName() {
         return "withoutString";
     }
 
     @Override
-    public Class<?> getReturnType(){
+    public Class<?> getReturnType() {
         return String[].class;
     }
 
     private String[] replace(final String[] str, final String replace) {
         final ArrayList<String> list = new ArrayList<>();
-        for (String aStr : str) {
+        for (final String aStr : str) {
             if (!aStr.equals(replace)) {
                 list.add(aStr);
             }

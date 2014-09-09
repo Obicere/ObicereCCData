@@ -1,14 +1,14 @@
-import java.util.ArrayList;
-
 import org.obicere.cc.executor.Case;
 import org.obicere.cc.tasks.projects.Manifest;
 import org.obicere.cc.tasks.projects.Parameter;
 import org.obicere.cc.tasks.projects.Runner;
 
+import java.util.ArrayList;
+
 @Manifest(author = "Obicere",
-        description = "Given 3 integers, return true if the difference between small and medium\nis the same as the difference between medium and large.\nThey won't necessarily be in order",
-        difficulty = 2,
-        version = 1.0)
+          description = "Return the nth fibonacci number. Note that:\nfibonacci(0) = 0\nfibonacci(1) = 1\nfibonacci(2) = 1\n...",
+          difficulty = 2,
+          version = 1.0)
 public class FibonacciRunner extends Runner {
 
     private static final Parameter[] PARAMETERS = new Parameter[]{
@@ -24,9 +24,9 @@ public class FibonacciRunner extends Runner {
     }
 
     @Override
-    public Case[] getCases(){
+    public Case[] getCases() {
         final Case[] cases = new Case[10];
-        for(int i = 0; i < cases.length; i++){
+        for (int i = 0; i < cases.length; i++) {
             final int n = random.nextInt(46); // 1,836,311,903
             cases[i] = new Case(fibonacci(n), n);
         }
@@ -34,22 +34,22 @@ public class FibonacciRunner extends Runner {
     }
 
     @Override
-    public Parameter[] getParameters(){
+    public Parameter[] getParameters() {
         return PARAMETERS;
     }
 
     @Override
-    public String getMethodName(){
+    public String getMethodName() {
         return "fibonacci";
     }
 
     @Override
-    public Class<?> getReturnType(){
+    public Class<?> getReturnType() {
         return int.class;
     }
 
     public static int fibonacci(final int i) {
-        if(i < 0){
+        if (i < 0) {
             return 0;
         }
         if (i < FIBONACCI.size()) {

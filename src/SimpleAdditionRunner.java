@@ -4,9 +4,9 @@ import org.obicere.cc.tasks.projects.Parameter;
 import org.obicere.cc.tasks.projects.Runner;
 
 @Manifest(author = "Obicere",
-        description = "Return the sum of a and b.",
-        difficulty = 1,
-        version = 1.0)
+          description = "Return the sum of a and b.",
+          difficulty = 1,
+          version = 1.0)
 public class SimpleAdditionRunner extends Runner {
 
     private static final Parameter[] PARAMETERS = new Parameter[]{
@@ -15,9 +15,9 @@ public class SimpleAdditionRunner extends Runner {
     };
 
     @Override
-    public Case[] getCases(){
+    public Case[] getCases() {
         final Case[] cases = new Case[10];
-        for(int i = 0; i < cases.length; i++){
+        for (int i = 0; i < cases.length; i++) {
             final int a = random.nextInt(-5000, 5001);
             final int b = random.nextInt(-5000, 5001);
             cases[i] = new Case(a + b, a, b);
@@ -26,17 +26,17 @@ public class SimpleAdditionRunner extends Runner {
     }
 
     @Override
-    public Parameter[] getParameters(){
+    public Parameter[] getParameters() {
         return PARAMETERS;
     }
 
     @Override
-    public String getMethodName(){
+    public String getMethodName() {
         return "sum";
     }
 
     @Override
-    public Class<?> getReturnType(){
+    public Class<?> getReturnType() {
         return int.class;
     }
 
