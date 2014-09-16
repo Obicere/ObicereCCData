@@ -5,8 +5,8 @@ import org.obicere.cc.tasks.projects.Runner;
 
 @Manifest(author = "Obicere",
           version = 1.0,
-          description = "Given an array of integers of length 10, sum all the integers.\n" +
-                        "But, if the number is even, subtract it from the sum. ",
+          description = "Given an array of integers, sum all the integers.\n" +
+                        "But, if the number is odd, subtract it from the sum. ",
           difficulty = 1)
 public class AddMinusRunner extends Runner {
 
