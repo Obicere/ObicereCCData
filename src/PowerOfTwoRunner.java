@@ -18,7 +18,7 @@ public class PowerOfTwoRunner extends Runner {
         final int length = 10;
         final Case[] cases = new Case[length];
         for (int i = 0; i < length; i++) {
-            final int power = 1 << random.nextInt(32);
+            final int power = 1 << random.nextInt(30);
             final boolean deviate = random.nextBoolean();
             final int deviation;
             if (deviate) {
