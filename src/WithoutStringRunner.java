@@ -1,8 +1,8 @@
 import org.obicere.cc.executor.Case;
 import org.obicere.cc.methods.CharSet;
-import org.obicere.cc.tasks.projects.Manifest;
-import org.obicere.cc.tasks.projects.Parameter;
-import org.obicere.cc.tasks.projects.Runner;
+import org.obicere.cc.projects.Manifest;
+import org.obicere.cc.projects.Parameter;
+import org.obicere.cc.projects.Runner;
 
 import java.util.ArrayList;
 

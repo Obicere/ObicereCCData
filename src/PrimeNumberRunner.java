@@ -1,7 +1,7 @@
 import org.obicere.cc.executor.Case;
-import org.obicere.cc.tasks.projects.Manifest;
-import org.obicere.cc.tasks.projects.Parameter;
-import org.obicere.cc.tasks.projects.Runner;
+import org.obicere.cc.projects.Manifest;
+import org.obicere.cc.projects.Parameter;
+import org.obicere.cc.projects.Runner;
 
 @Manifest(author = "Obicere",
           description = "Return the nth prime number in method 'getNthPrime(int n)'.\nn will be bounded by [1, 1000]\nAssume 2 is the first prime number.",

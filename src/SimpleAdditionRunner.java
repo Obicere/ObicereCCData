@@ -1,7 +1,7 @@
 import org.obicere.cc.executor.Case;
-import org.obicere.cc.tasks.projects.Manifest;
-import org.obicere.cc.tasks.projects.Parameter;
-import org.obicere.cc.tasks.projects.Runner;
+import org.obicere.cc.projects.Manifest;
+import org.obicere.cc.projects.Parameter;
+import org.obicere.cc.projects.Runner;
 
 @Manifest(author = "Obicere",
           description = "Return the sum of a and b.",

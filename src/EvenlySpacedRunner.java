@@ -1,7 +1,7 @@
 import org.obicere.cc.executor.Case;
-import org.obicere.cc.tasks.projects.Manifest;
-import org.obicere.cc.tasks.projects.Parameter;
-import org.obicere.cc.tasks.projects.Runner;
+import org.obicere.cc.projects.Manifest;
+import org.obicere.cc.projects.Parameter;
+import org.obicere.cc.projects.Runner;
 
 @Manifest(author = "Obicere",
           description = "Given 3 integers, return true if the difference between small and medium\nis the same as the difference between medium and large.\nThey won't necessarily be in order",

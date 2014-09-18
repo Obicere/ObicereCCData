@@ -1,8 +1,8 @@
 import org.obicere.cc.executor.Case;
 import org.obicere.cc.methods.CharSet;
-import org.obicere.cc.tasks.projects.Manifest;
-import org.obicere.cc.tasks.projects.Parameter;
-import org.obicere.cc.tasks.projects.Runner;
+import org.obicere.cc.projects.Manifest;
+import org.obicere.cc.projects.Parameter;
+import org.obicere.cc.projects.Runner;
 
 @Manifest(author = "Obicere",
           description = "Return the sum of all the numbers contained in the string.\n\"Aj7b7s6\" -> 7 + 7 + 6 = 20",
