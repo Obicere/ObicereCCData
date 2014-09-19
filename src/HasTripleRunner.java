@@ -21,7 +21,7 @@ public class HasTripleRunner extends Runner {
             final int[] nums = new int[length];
             for (int k = 0; k < length; ) {
 
-                final int val = random.nextInt(100);
+                final int val = random.nextInt(10);
                 final int max = random.nextInt(3);
 
                 for (int j = 0; j < max && k < length; j++) {

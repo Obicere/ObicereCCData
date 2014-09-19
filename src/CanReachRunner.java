@@ -21,7 +21,7 @@ public class CanReachRunner extends Runner {
         for (int i = 0; i < cases.length; i++) {
             final int small = random.nextInt(5, 10);
             final int large = random.nextInt(5);
-            final int goal = (small + large * 5) + random.nextInt(5, 11);
+            final int goal = (small + large * 5) + random.nextInt(-5, 5);
             cases[i] = new Case((goal <= small + large * 5) && goal % 5 <= small, small, large, goal);
         }
         return cases;

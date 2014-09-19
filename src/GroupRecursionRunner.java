@@ -4,7 +4,7 @@ import org.obicere.cc.projects.Parameter;
 import org.obicere.cc.projects.Runner;
 
 @Manifest(author = "Obicere",
-          description = "Return true if any combination of the numbers can reach the target.\nStart will always be 0 to begin with.\nRemember that this is recursive, so no loops.",
+          description = "Return true if any combination of the numbers can sum to the target.\nStart will always be 0 to begin with.\nRemember that this is recursive, so no loops.",
           difficulty = 4,
           version = 1.0)
 public class GroupRecursionRunner extends Runner {

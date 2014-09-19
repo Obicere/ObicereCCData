@@ -42,14 +42,17 @@ public class PrimeNumberRunner extends Runner {
     }
 
     private static int[] getPrimes() {
-        final int[] primes = new int[1000];
-        int index = 1;
-        primes[0] = 2; // Basis so we can simplify
-        for (int i = 3; index < primes.length; i += 2) {
-            // Can add by 2 now to avoid evens, since 2 has been covered
-            if (isPrime(i)) {
-                primes[index++] = i;
+        final int[] primes = new int[1001];
+        primes[0] = 2;
+        int counter = 1;
+        top:
+        for(int i = 3; counter <= 1000; i += 2){
+            for(int j = 0; j < counter; j++){
+                if(i % primes[j] == 0){
+                    continue top;
+                }
             }
+            primes[counter++] = i;
         }
         return primes;
     }

@@ -19,20 +19,35 @@ public class MaxBlockRunner extends Runner {
         final Case[] cases = new Case[10];
         for (int i = 0; i < cases.length; i++) {
             final StringBuilder builder = new StringBuilder();
-            int max = 0;
             for (int j = 0; j < random.nextInt(3, 7); j++) {
                 final char c = random.nextChar(CharSet.ALPHA);
                 final int length = random.nextInt(5);
                 for (int k = 0; k < length; k++) {
                     builder.append(c);
                 }
-                if (length > max) {
-                    max = length;
-                }
             }
-            cases[i] = new Case(max, builder.toString());
+            final String str = builder.toString();
+            cases[i] = new Case(maxBlock(str), str);
         }
         return cases;
+    }
+
+    private int maxBlock(final String str) {
+        int max = -2147483648;
+        final char[] c = str.toCharArray();
+        for (int i = 0; i < c.length; i++) {
+            int counter = 0;
+            final char next = c[i];
+            while (i < c.length && next == c[i]) {
+                counter++;
+                i++;
+            }
+            i--;
+            if (max < counter) {
+                max = counter;
+            }
+        }
+        return max;
     }
 
     @Override

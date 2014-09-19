@@ -21,7 +21,7 @@ public class WithoutStringRunner extends Runner {
     public Case[] getCases() {
         final Case[] cases = new Case[10];
         for (int i = 0; i < cases.length; i++) {
-            final int length = random.nextInt(10);
+            final int length = random.nextInt(10) + 1;
             final String[] strings = new String[length];
             for (int j = 0; j < length; j++) {
                 strings[j] = String.valueOf(random.nextChar(CharSet.ALPHA));
