@@ -1,11 +1,11 @@
 import org.obicere.cc.executor.Case;
-import org.obicere.cc.projects.Manifest;
+import org.obicere.cc.projects.RunnerManifest;
 import org.obicere.cc.projects.Parameter;
 import org.obicere.cc.projects.Runner;
 
 import java.util.ArrayList;
 
-@Manifest(author = "Obicere",
+@RunnerManifest(author = "Obicere",
           description = "Return the nth fibonacci number. Note that:\nfibonacci(0) = 0\nfibonacci(1) = 1\nfibonacci(2) = 1\n...",
           difficulty = 2,
           version = 1.0)

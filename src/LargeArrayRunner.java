@@ -1,9 +1,9 @@
 import org.obicere.cc.executor.Case;
-import org.obicere.cc.projects.Manifest;
+import org.obicere.cc.projects.RunnerManifest;
 import org.obicere.cc.projects.Parameter;
 import org.obicere.cc.projects.Runner;
 
-@Manifest(author = "Obicere",
+@RunnerManifest(author = "Obicere",
           description = "Return the array that has a larger sum out of the 2.\n{1, 3, 2}, {5, 3, 2} -> {5, 3, 2}\n{1, 5, 6}, {4, 8, 0} -> {1, 5, 6}\nThey will always be of same length.\nIf they are of same size, return array 'b'",
           difficulty = 1,
           version = 1.0)

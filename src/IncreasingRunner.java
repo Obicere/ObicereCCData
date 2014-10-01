@@ -1,9 +1,9 @@
 import org.obicere.cc.executor.Case;
-import org.obicere.cc.projects.Manifest;
+import org.obicere.cc.projects.RunnerManifest;
 import org.obicere.cc.projects.Parameter;
 import org.obicere.cc.projects.Runner;
 
-@Manifest(author = "Obicere",
+@RunnerManifest(author = "Obicere",
           description = "Return true if the parameters a, b, c increase as you read them from left-to-right, or stay the same.\n{1, 2, 4} -> true\n{1, 2, 2} -> true\n{1, 4, 3} -> false",
           difficulty = 2,
           version = 1.0)

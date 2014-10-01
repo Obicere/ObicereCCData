@@ -1,10 +1,10 @@
 import org.obicere.cc.executor.Case;
 import org.obicere.cc.methods.CharSet;
-import org.obicere.cc.projects.Manifest;
+import org.obicere.cc.projects.RunnerManifest;
 import org.obicere.cc.projects.Parameter;
 import org.obicere.cc.projects.Runner;
 
-@Manifest(author = "Obicere",
+@RunnerManifest(author = "Obicere",
           description = "Return the length of the largest block of repetitive characters in a String.",
           difficulty = 3,
           version = 1.0)

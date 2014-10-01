@@ -1,9 +1,9 @@
 import org.obicere.cc.executor.Case;
-import org.obicere.cc.projects.Manifest;
+import org.obicere.cc.projects.RunnerManifest;
 import org.obicere.cc.projects.Parameter;
 import org.obicere.cc.projects.Runner;
 
-@Manifest(author = "Obicere",
+@RunnerManifest(author = "Obicere",
           description = "Given parameters boolean lowGas and boolean lowOil, using the getWarning method return the following:\n0 if you have no issues\n1 if you have lowOil\n2 if you have lowGas\n3 if you have both.",
           difficulty = 1,
           version = 1.0)

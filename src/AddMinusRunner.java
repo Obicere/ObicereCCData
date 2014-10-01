@@ -1,9 +1,9 @@
 import org.obicere.cc.executor.Case;
-import org.obicere.cc.projects.Manifest;
+import org.obicere.cc.projects.RunnerManifest;
 import org.obicere.cc.projects.Parameter;
 import org.obicere.cc.projects.Runner;
 
-@Manifest(author = "Obicere",
+@RunnerManifest(author = "Obicere",
           version = 1.0,
           description = "Given an array of integers, sum all the integers.\n" +
                         "But, if the number is odd, subtract it from the sum. ",

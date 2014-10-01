@@ -1,9 +1,9 @@
 import org.obicere.cc.executor.Case;
-import org.obicere.cc.projects.Manifest;
+import org.obicere.cc.projects.RunnerManifest;
 import org.obicere.cc.projects.Parameter;
 import org.obicere.cc.projects.Runner;
 
-@Manifest(author = "Obicere",
+@RunnerManifest(author = "Obicere",
           description = "Return true if any combination of the numbers can sum to the target.\nStart will always be 0 to begin with.\nRemember that this is recursive, so no loops.",
           difficulty = 4,
           version = 1.0)

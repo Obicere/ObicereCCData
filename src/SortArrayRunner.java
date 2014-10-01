@@ -1,11 +1,11 @@
 import org.obicere.cc.executor.Case;
-import org.obicere.cc.projects.Manifest;
+import org.obicere.cc.projects.RunnerManifest;
 import org.obicere.cc.projects.Parameter;
 import org.obicere.cc.projects.Runner;
 
 import java.util.Arrays;
 
-@Manifest(author = "Obicere",
+@RunnerManifest(author = "Obicere",
           description = "Sort the numbers of the given array from least to greatest, and return a new array containing the sorted list.\n{3, 4, 1, 6, 8} -> {1, 3, 4, 6, 8}",
           difficulty = 2,
           version = 1.0)

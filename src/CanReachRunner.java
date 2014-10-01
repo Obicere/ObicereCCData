@@ -1,9 +1,9 @@
 import org.obicere.cc.executor.Case;
-import org.obicere.cc.projects.Manifest;
+import org.obicere.cc.projects.RunnerManifest;
 import org.obicere.cc.projects.Parameter;
 import org.obicere.cc.projects.Runner;
 
-@Manifest(author = "Obicere",
+@RunnerManifest(author = "Obicere",
           description = "Return true if you can reach the goal (without going over) by adding large blocks (worth 5) and small blocks (worth 1).\nYou only have a number of each of these given in the parameters.",
           difficulty = 3,
           version = 1.0)

@@ -1,12 +1,12 @@
 import org.obicere.cc.executor.Case;
 import org.obicere.cc.methods.CharSet;
-import org.obicere.cc.projects.Manifest;
+import org.obicere.cc.projects.RunnerManifest;
 import org.obicere.cc.projects.Parameter;
 import org.obicere.cc.projects.Runner;
 
 import java.util.ArrayList;
 
-@Manifest(author = "Obicere",
+@RunnerManifest(author = "Obicere",
           description = "Sweep through the array of Strings and remove an instance of the 'remove' parameter.\nNo null strings will be provided. \nwithoutString({\"a\", \"b\", \"c\", \"a\"}, \"a\") -> {\"b\", \"c\"}",
           difficulty = 2,
           version = 1.0)
