@@ -5,7 +5,7 @@ import org.obicere.cc.projects.Parameter;
 import org.obicere.cc.projects.Runner;
 
 @RunnerManifest(author = "Obicere",
-          description = "Return the length of the largest block of repetitive characters in a String.",
+          description = "Return the length of the largest block of sequential characters in a String.",
           difficulty = 3,
           version = 1.0)
 public class MaxBlockRunner extends Runner {
@@ -33,7 +33,7 @@ public class MaxBlockRunner extends Runner {
     }
 
     private int maxBlock(final String str) {
-        int max = -2147483648;
+        int max = 0;
         final char[] c = str.toCharArray();
         for (int i = 0; i < c.length; i++) {
             int counter = 0;
