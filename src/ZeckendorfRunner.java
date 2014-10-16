@@ -3,8 +3,6 @@ import org.obicere.cc.projects.Parameter;
 import org.obicere.cc.projects.Runner;
 import org.obicere.cc.projects.RunnerManifest;
 
-import java.util.ArrayList;
-
 /**
  * @author Obicere
  */
@@ -27,14 +25,12 @@ public class ZeckendorfRunner extends Runner {
     public Case[] getCases() {
         final int count = 10;
         final Case[] cases = new Case[count];
-        System.out.println("Started cases");
         for (int i = 0; i < count; i++) {
             final int numbers = random.nextInt(4) + 1;
             final int[] nums = new int[numbers];
 
             int sum = 0;
             int last = 0;
-            System.out.println("Building with count: " + numbers);
             for (int j = 0; j < numbers; j++) {
 
                 final int next = random.nextInt(last + 1, 46);
@@ -46,7 +42,6 @@ public class ZeckendorfRunner extends Runner {
                 sum += fib;
                 nums[j] = fib;
             }
-            System.out.println("Built number: " + sum);
             cases[i] = new Case(nums, sum);
         }
         return cases;
