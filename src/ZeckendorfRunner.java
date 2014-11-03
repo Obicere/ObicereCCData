@@ -12,7 +12,7 @@ import java.util.Arrays;
                 description = "The Zeckendorf representation of a number is given as the sum of nonconsecutive fibonacci numbers.\n" +
                               "Every positive integer can be represented by a Zeckendorf combination.\n" +
                               "For example:\n" +
-                              "14 = 1 + 13\n" +
+                              "14 = 1 + 13 = Fib(1) + Fib(7)\n" +
                               "\n" +
                               "Return the Zeckendorf representation of the given positive integer n in order from smallest-to-largest.",
                 difficulty = 5,
