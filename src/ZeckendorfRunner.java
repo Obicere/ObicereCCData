@@ -3,6 +3,8 @@ import org.obicere.cc.projects.Parameter;
 import org.obicere.cc.projects.Runner;
 import org.obicere.cc.projects.RunnerManifest;
 
+import java.util.Arrays;
+
 /**
  * @author Obicere
  */
@@ -16,6 +18,17 @@ import org.obicere.cc.projects.RunnerManifest;
                 difficulty = 5,
                 version = 1.0)
 public class ZeckendorfRunner extends Runner {
+
+
+    private static final int[] FIB_NUMS = new int[45];
+
+    static {
+        FIB_NUMS[0] = 1;
+        FIB_NUMS[1] = 1;
+        for (int i = 2; i < FIB_NUMS.length; i++) {
+            FIB_NUMS[i] = FIB_NUMS[i - 1] + FIB_NUMS[i - 2];
+        }
+    }
 
     private static final Parameter[] PARAMETERS = new Parameter[]{
             new Parameter(int.class, "n")
@@ -32,17 +45,25 @@ public class ZeckendorfRunner extends Runner {
             int sum = 0;
             int last = 0;
             for (int j = 0; j < numbers; j++) {
-
-                final int next = random.nextInt(last + 1, 46);
-                final int fib = FibonacciRunner.fibonacci(next);
-                if (next == 45) {
-                    break; // We don't want to overflow ints
+                if(last >= FIB_NUMS.length){
+                    break;
                 }
-                last = next;
+                // We also start with the +2 index to avoid getting consecutive numbers.
+                last = random.nextInt(last, FIB_NUMS.length);
+                final int fib = FIB_NUMS[last];
+                if (sum + fib <= 0) {
+                    break;
+                }
+                last += 2;
                 sum += fib;
                 nums[j] = fib;
             }
-            cases[i] = new Case(nums, sum);
+            int j = nums.length - 1;
+            while (j >= 0 && nums[j] != 0) {
+                j--;
+            }
+            final int[] trimNums = Arrays.copyOfRange(nums, 0, nums.length - j);
+            cases[i] = new Case(trimNums, sum);
         }
         return cases;
     }
