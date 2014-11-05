@@ -43,7 +43,9 @@ public class ZeckendorfRunner extends Runner {
             final int[] nums = new int[numbers];
 
             int sum = 0;
-            int last = 0;
+            int last = 1; // We start with 1 since fib_0 = fib_1 = 1. This can cause ambiguity as to
+                          // which is being called. EX: 1 + 2 = 3 = Fib(0) + Fib(2) = Fib(3). These
+                          // are all valid numbers, but the one we want is Fib(3).
             for (int j = 0; j < numbers; j++) {
                 if(last >= FIB_NUMS.length){
                     break;
@@ -58,11 +60,12 @@ public class ZeckendorfRunner extends Runner {
                 sum += fib;
                 nums[j] = fib;
             }
-            int j = nums.length - 1;
-            while (j >= 0 && nums[j] != 0) {
-                j--;
+            int j = 0;
+            final int max = nums.length - 1;
+            while (j < nums.length && nums[max - j] == 0) {
+                j++;
             }
-            final int[] trimNums = Arrays.copyOfRange(nums, 0, nums.length - j);
+            final int[] trimNums = Arrays.copyOfRange(nums, 0, (nums.length - j));
             cases[i] = new Case(trimNums, sum);
         }
         return cases;
