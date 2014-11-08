@@ -1,5 +1,5 @@
 import org.obicere.cc.executor.Case;
-import org.obicere.cc.methods.CharSet;
+import org.obicere.cc.util.CharSet;
 import org.obicere.cc.projects.RunnerManifest;
 import org.obicere.cc.projects.Parameter;
 import org.obicere.cc.projects.Runner;
@@ -35,14 +35,13 @@ public class MaxBlockRunner extends Runner {
     private int maxBlock(final String str) {
         int max = 0;
         final char[] c = str.toCharArray();
-        for (int i = 0; i < c.length; i++) {
+        for (int i = 0; i < c.length;) {
             int counter = 0;
             final char next = c[i];
             while (i < c.length && next == c[i]) {
                 counter++;
                 i++;
             }
-            i--;
             if (max < counter) {
                 max = counter;
             }

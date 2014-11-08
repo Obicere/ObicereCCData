@@ -1,5 +1,5 @@
 import org.obicere.cc.executor.Case;
-import org.obicere.cc.methods.CharSet;
+import org.obicere.cc.util.CharSet;
 import org.obicere.cc.projects.RunnerManifest;
 import org.obicere.cc.projects.Parameter;
 import org.obicere.cc.projects.Runner;
