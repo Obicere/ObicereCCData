@@ -58,6 +58,6 @@ public class LargeArrayRunner extends Runner {
 
     @Override
     public Class<?> getReturnType() {
-        return int.class;
+        return int[].class;
     }
 }
