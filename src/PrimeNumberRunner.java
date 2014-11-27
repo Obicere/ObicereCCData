@@ -4,7 +4,13 @@ import org.obicere.cc.projects.Parameter;
 import org.obicere.cc.projects.Runner;
 
 @RunnerManifest(author = "Obicere",
-          description = "Return the nth prime number in method 'getNthPrime(int n)'.\nn will be bounded by [1, 1000]\nAssume 2 is the first prime number.",
+          description = "Return the nth prime number in method 'getNthPrime(int n)'.\n" +
+                        "n will be bounded by [1, 1000]\n" +
+                        "Assume 2 is the first prime number.\n" +
+                        "\n" +
+                        "getNthPrime(1) = 2\n" +
+                        "getNthPrime(2) = 3\n" +
+                        "getNthPrime(83) = 431",
           difficulty = 3,
           version = 1.0)
 public class PrimeNumberRunner extends Runner {
@@ -55,15 +61,5 @@ public class PrimeNumberRunner extends Runner {
             primes[counter++] = i;
         }
         return primes;
-    }
-
-    static boolean isPrime(int check) {
-        final long max = Math.round(Math.sqrt(check));
-        for (int i = 2; i < max; i++) {
-            if (check % i == 0) {
-                return false;
-            }
-        }
-        return true;
     }
 }
