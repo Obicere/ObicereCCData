@@ -1,5 +1,5 @@
 import org.obicere.cc.executor.Case;
-import org.obicere.cc.util.CharSet;
+import org.obicere.cc.util.CharacterGroup;
 import org.obicere.cc.projects.RunnerManifest;
 import org.obicere.cc.projects.Parameter;
 import org.obicere.cc.projects.Runner;
@@ -24,7 +24,7 @@ public class WithoutStringRunner extends Runner {
             final int length = random.nextInt(10) + 1;
             final String[] strings = new String[length];
             for (int j = 0; j < length; j++) {
-                strings[j] = String.valueOf(random.nextChar(CharSet.ALPHA));
+                strings[j] = String.valueOf(random.nextChar(CharacterGroup.ALPHA));
             }
             final String remove = strings[random.nextInt(length)];
             final String[] answer = replace(strings, remove);

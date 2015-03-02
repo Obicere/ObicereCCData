@@ -1,5 +1,5 @@
 import org.obicere.cc.executor.Case;
-import org.obicere.cc.util.CharSet;
+import org.obicere.cc.util.CharacterGroup;
 import org.obicere.cc.projects.RunnerManifest;
 import org.obicere.cc.projects.Parameter;
 import org.obicere.cc.projects.Runner;
@@ -22,7 +22,7 @@ public class ParseSumRunner extends Runner {
             final StringBuilder str = new StringBuilder(length);
             int sum = 0;
             for (int j = 0; j < length; j++) {
-                final char next = random.nextChar(CharSet.ALPHANUMERIC);
+                final char next = random.nextChar(CharacterGroup.ALPHANUMERIC);
                 if (Character.isDigit(next)) {
                     sum += next - '0';
                 }
